@@ -9,9 +9,7 @@ const Container = styled.div`
 
 const index: React.FC = () => {
   return (
-    <Container>
-      Hello Airbnb
-    </Container>
+    <Container></Container>
   );
 };
 
