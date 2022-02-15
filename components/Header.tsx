@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AirbnbLogoIcon from "../public/static/svg/logo/logo.svg";
 import AirbnbLogoTextIcon from "../public/static/svg/logo/logo_text.svg";
 import palette from "../styles/palette";
 import Link from "next/link";
+import useModal from "../hooks/useModal";
+import SignUpModal from "./auth/SignUpModal";
+
 
 const Container = styled.div`
   position: sticky;
@@ -57,6 +60,7 @@ const Container = styled.div`
 `;
 
 const Header: React.FC = () => {
+  const { openModal, ModalPortal } = useModal();
   return (
     <Container>
       <Link href="/">
@@ -66,11 +70,25 @@ const Header: React.FC = () => {
         </a>
       </Link>
       <div className="header-auth-buttons">
-        <button type="button" className="header-sign-up-button">회원가입</button>
-        <button type="button" className="header-login-button">로그인</button>
+        <button 
+          type="button" 
+          className="header-sign-up-button"
+          onClick={openModal}
+        >
+          회원가입
+        </button>
+        <button 
+          type="button" 
+          className="header-login-button"
+        >
+          로그인
+        </button>
       </div>
+      <ModalPortal>
+        <SignUpModal />
+      </ModalPortal>
     </Container>
-  )
+  );
 };
 
 export default Header;
